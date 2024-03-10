@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "HYmM1Jn3oPIg6bEKo9NHO1/BIwC55HYioTtJ74NEgRf4WNdvOREOuPIMmL/gFwrZ7C1JzoFrNbWe0k0ZEyMiGA==",
+  "success": true,
+  "projectFilePath": "/home/raffael/cours/test_validation/PuissanceQuatreMorpion/PuissancequatreMorpion/PuissancequatreMorpion.csproj",
+  "expectedPackageFiles": [
+    "/home/raffael/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.26/microsoft.aspnetcore.app.ref.6.0.26.nupkg.sha512"
+  ],
+  "logs": []
+}
