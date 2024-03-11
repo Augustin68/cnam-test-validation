@@ -23,11 +23,14 @@ De plus, cette même fonction est probablement trop longue, il y a beaucoup de b
 
 En bref, tester le code dans ces conditions est très difficile. Il faudrait donc remanier le code en respectant les principes de POO afin de pouvoir faire la validation correctement.
 
+
 ## II - Les méthodes de résolution de ces problèmes
 
 ### II.1 - Valider l'existant
 
 Comme dit précédemment, valider l'entièreté de l'existant est une tâche complexe. Dans un premier temps on peut imaginer simplement tester les fonctions les plus simples à tester, à savoir, pour chaque jeux, celles qui déterminent si un jour à gagner et celles qui déterminent si il y a égalité. Pour tester les autres fonctionnalités, il faudra d'abord refacto le code afin de réduire la complexitée cyclomatique des fonctions.
+
+Après avoir écrit quelques tests, on dirait que la fonction de validation de la victoire du morpion ne fonctionne pas dans certains cas. Pour régler ces problèmes je pourrais essayer de la corriger. Mais je préfère directement passer à la refacto du code afin de régler tout les problèmes d'un coup.
 
 ### II.2 - Corriger les bugs éventuels
 
