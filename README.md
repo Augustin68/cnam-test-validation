@@ -21,22 +21,29 @@ Ensuite, la fonction BoucleJeu est très similaire entre la class PuissanceQuatr
 
 De plus, cette même fonction est probablement trop longue, il y a beaucoup de boucles et de conditions se qui la rend également difficile à tester.
 
+Il y donc beaucoup de code dupliqué, ce qui augmente d'autant plus le nombre de tests à effectuer.
+
 En bref, tester le code dans ces conditions est très difficile. Il faudrait donc remanier le code en respectant les principes de POO afin de pouvoir faire la validation correctement.
 
 
 ## II - Les méthodes de résolution de ces problèmes
 
-### II.1 - Valider l'existant
+
+>Expliquez les actions à mettre en place pour valider l’existant, et le cas échéant, pour corriger les bugs éventuels.
+
 
 Comme dit précédemment, valider l'entièreté de l'existant est une tâche complexe. Dans un premier temps on peut imaginer simplement tester les fonctions les plus simples à tester, à savoir, pour chaque jeux, celles qui déterminent si un jour à gagner et celles qui déterminent si il y a égalité. Pour tester les autres fonctionnalités, il faudra d'abord refacto le code afin de réduire la complexitée cyclomatique des fonctions.
 
-Après avoir écrit quelques tests, on dirait que la fonction de validation de la victoire du morpion ne fonctionne pas dans certains cas. Pour régler ces problèmes je pourrais essayer de la corriger. Mais je préfère directement passer à la refacto du code afin de régler tout les problèmes d'un coup.
+Après avoir écrit quelques tests, on dirait que la fonction de validation de la victoire du morpion ne fonctionne pas dans certains cas. Pour régler ces problèmes je pourrais essayer de la corriger, mais je préfère directement passer à la refacto du code afin de régler tout les problèmes d'un coup.
 
-### II.2 - Corriger les bugs éventuels
-
-Pour le moment, j'ai décellé un bug, quand on joue au morpion, quand on pose un pion, parfois plusieurs sont posés.
+Il faudrait restructurer l'ensemble du projet en utilisant différents design paterns. Le DP strategy pourrait être utilisé pour choisir entre les différents jeux. On pourrait également restructurer l'application sous forme d'un MVC (Modèle vue contrôleur) pour séparer les données, l'interface utilisateur (console) et la logique.
 
 ### II.3 Reprendre et améliorer le code existant
 
 ## III - Le développement des fonctionnalités manquantes
 
+> Expliquez comment vous souhaitez procéder pour « brancher » un joueur contrôlé par l’ordinateur ainsi qu’un système permettant l’historisation et la persistance.
+
+Pour le système d'historisation et persistance des parties (sauvegarde), il est possible d'utiliser le design pattern Observer et de l'inclure dans notre architecture MVC. A chaque fois que le joueur ou l'ordinateur joue, la vue sera notifié. Il est alors possible de brancher notre systèle de sauvegarde qui sera aussi notifié lors de modifications, et alors d'enregistrer ce que le ou les joueurs font. Il suffira ensuite de restaurer la sauvegarde au lancement du jeu.
+
+Pour le système de joueur contrôle par ordinateur, il faudrait créer deux classes `HumanPlayer` et `ComputerPlayer` héritant d'une classe abstraite `Player`. Ces classes définiraient la manière de jouer.
