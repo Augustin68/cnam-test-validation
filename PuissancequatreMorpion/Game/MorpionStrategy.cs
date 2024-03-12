@@ -3,9 +3,6 @@ using System.Threading.Tasks;
 
 namespace MorpionApp
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public class MorpionStrategy : IGameStrategy
     {
         public Position PlaceToken(char symbol) {
