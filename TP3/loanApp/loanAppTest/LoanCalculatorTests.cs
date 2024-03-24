@@ -6,30 +6,21 @@ namespace loanAppTest;
 public class LoanCalculatorTests
 {
     [Theory]
-    [InlineData(0,0,0, 0)]
-    public void ComputeLoanMonthlyPayment(double capital, double annualRate, int monthDuration, double result)
+    [InlineData(45000, 0.015, 120)]
+    [InlineData(50000, 0.015, 120)]
+    [InlineData(0, 0.015, 120)]
+    [InlineData(-10000, 0.015, 120)]
+    [InlineData(int.MinValue, 0.015, 120)]
+    public void ShouldNotAcceptUnderMinimalAmount(double capital, double annualRate, int monthlyDuration)
     {
         // Arrange
         LoanCalculator loanCalculator = new LoanCalculator();
 
         // Act
-        double computedResult = loanCalculator.ComputeLoanMonthlyPayment(capital, annualRate, monthDuration);
+        Action act = () => loanCalculator.ComputeLoanMonthlyPayment(capital, annualRate, monthlyDuration);
 
         // Assert
-        Assert.Equal(computedResult, result);
-    }
-
-    [Fact]
-    public void ShouldNotAcceptUnderMinimalAmount()
-    {
-        // Arrange
-        LoanCalculator loanCalculator = new LoanCalculator();
-
-        // Act
-        Action act = () => loanCalculator.ComputeLoanMonthlyPayment(45000, 0.015, 120);
-
-        // Assert
-        ArgumentException exception = Assert.Throws<ArgumentOutOfRangeException>(act);
-        Assert.Equal("Capital should be above 50 000", exception.Message);
+        ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>(act);
+        Assert.Equal("Capital should be striclty above 50 000 (Parameter 'capital')", exception.Message);
     }
 }

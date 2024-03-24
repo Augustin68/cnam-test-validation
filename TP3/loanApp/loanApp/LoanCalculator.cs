@@ -10,6 +10,10 @@ namespace LoanApp
     {
         public double ComputeLoanMonthlyPayment(double capital, double annualRate, int monthDuration)
         {
+            if(capital <= 50000)
+            {
+                throw new ArgumentOutOfRangeException("capital", "Capital should be striclty above 50 000");
+            }
             return 0;
         }
     }
