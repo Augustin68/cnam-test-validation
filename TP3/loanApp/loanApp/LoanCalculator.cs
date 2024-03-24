@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace loanApp
+namespace LoanApp
 {
-    internal class LoanCalculator
+    public class LoanCalculator
     {
-        float ComputeLoanMonthlyPayment(float capital, float annualRate, int monthDuration)
+        public double ComputeLoanMonthlyPayment(double capital, double annualRate, int monthDuration)
         {
-            float loan = 0;
-            return loan;
+            return 0;
         }
     }
 }
