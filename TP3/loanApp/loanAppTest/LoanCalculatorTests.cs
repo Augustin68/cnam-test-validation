@@ -75,4 +75,20 @@ public class LoanCalculatorTests
         Exception exception = Record.Exception(act);
         Assert.Null(exception);
     }
+
+    [Theory]
+    [InlineData(100000, 0.015, 120, 897.91)]
+    [InlineData(100000, int.MaxValue, 120, 17895697058333.34)]
+    [InlineData(int.MaxValue, int.MaxValue, 150, 3.843071678443684E+17)]
+    public void ShouldComputeMonthlyLoan(double capital, double annualRate, int monthDuration, double correctResult)
+    {
+        // Arrange
+        LoanCalculator loanCalculator = new LoanCalculator();
+
+        // Act
+        double result = loanCalculator.ComputeLoanMonthlyPayment(capital, annualRate, monthDuration);
+
+        // Assert
+        Assert.Equal(correctResult, result);
+    }
 }

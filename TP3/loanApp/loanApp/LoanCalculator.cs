@@ -20,7 +20,16 @@ namespace LoanApp
             {
                 throw new ArgumentOutOfRangeException("monthDuration", "Monthly duration should be between 9 and 25 years");
             }
-            return 0;
+
+            double annualRateOnMonth = annualRate / 12;
+
+            double topEquation = capital * annualRateOnMonth;
+
+            double bottomEquation = 1 - Math.Pow((1 + annualRateOnMonth), -monthDuration);
+
+            double result = Math.Round(topEquation / bottomEquation, 2);
+
+            return result;
         }
     }
 }
