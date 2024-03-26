@@ -1,9 +1,8 @@
-using Xunit;
 using LoanApp;
 
 namespace loanAppTest;
 
-public class LoanCalculatorTests
+public class LoanTests
 {
     [Theory]
     [InlineData(45000, 0.015, 120)]
@@ -14,7 +13,7 @@ public class LoanCalculatorTests
     public void ShouldNotAcceptUnderMinimalAmount(double capital, double annualRate, int monthDuration)
     {
         // Arrange
-        LoanCalculator loanCalculator = new LoanCalculator();
+        Loan loanCalculator = new Loan();
 
         // Act
         Action act = () => loanCalculator.ComputeLoanMonthlyPayment(capital, annualRate, monthDuration);
@@ -30,7 +29,7 @@ public class LoanCalculatorTests
     public void ShouldAcceptAboveMinimalAmount(double capital, double annualRate, int monthDuration)
     {
         // Arrange
-        LoanCalculator loanCalculator = new LoanCalculator();
+        Loan loanCalculator = new Loan();
 
         // Act
         Action act = () => loanCalculator.ComputeLoanMonthlyPayment(capital, annualRate, monthDuration);
@@ -49,7 +48,7 @@ public class LoanCalculatorTests
     public void ShouldNotAcceptUnderMinimalMonthlyDuration(double capital, double annualRate, int monthDuration)
     {
         // Arrange
-        LoanCalculator loanCalculator = new LoanCalculator();
+        Loan loanCalculator = new Loan();
 
         // Act
         Action act = () => loanCalculator.ComputeLoanMonthlyPayment(capital, annualRate, monthDuration);
@@ -66,7 +65,7 @@ public class LoanCalculatorTests
     public void ShouldAcceptBetweenAuthorizedMonthlyDuration(double capital, double annualRate, int monthDuration)
     {
         // Arrange
-        LoanCalculator loanCalculator = new LoanCalculator();
+        Loan loanCalculator = new Loan();
 
         // Act
         Action act = () => loanCalculator.ComputeLoanMonthlyPayment(capital, annualRate, monthDuration);
@@ -83,7 +82,7 @@ public class LoanCalculatorTests
     public void ShouldComputeMonthlyLoan(double capital, double annualRate, int monthDuration, double correctResult)
     {
         // Arrange
-        LoanCalculator loanCalculator = new LoanCalculator();
+        Loan loanCalculator = new Loan();
 
         // Act
         double result = loanCalculator.ComputeLoanMonthlyPayment(capital, annualRate, monthDuration);
