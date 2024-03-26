@@ -8,9 +8,8 @@ namespace LoanApp
 {
     public class LoanCalculator
     {
-        const int MIN_CAPITAL = 50000;
-        const int MIN_MONTH_DURATION = 108;
-        const int MAX_MONTH_DURATION = 300;
+        const int MIN_CAPITAL = 0;
+        const int MIN_MONTH_DURATION = 0;
 
         public static double ComputeLoanMonthlyPayment(double capital, double annualRate, int monthDuration)
         {
@@ -20,7 +19,7 @@ namespace LoanApp
             }
 
             // Between 9 and 25 years
-            if (monthDuration < MIN_MONTH_DURATION || monthDuration > MAX_MONTH_DURATION)
+            if (monthDuration < MIN_MONTH_DURATION)
             {
                 throw new ArgumentOutOfRangeException("monthDuration", "Monthly duration should be between 9 and 25 years");
             }

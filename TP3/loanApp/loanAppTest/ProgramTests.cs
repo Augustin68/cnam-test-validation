@@ -1,6 +1,6 @@
 using LoanApp;
 
-namespace loanAppTest;
+namespace LoanAppTest;
 
 public class ProgramTests
 {
