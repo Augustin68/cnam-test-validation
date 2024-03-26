@@ -52,8 +52,8 @@ namespace LoanApp
                 MonthResults.Add(new LoanMonthResult
                 {
                     MensualityNumber = i,
-                    RefundedCapital = refundedCapital,
-                    RemainingCapital = remainingCapital,
+                    RefundedCapital = Math.Round(refundedCapital, 2),
+                    RemainingCapital = Math.Round(remainingCapital, 2),
                 });
             }
         }
