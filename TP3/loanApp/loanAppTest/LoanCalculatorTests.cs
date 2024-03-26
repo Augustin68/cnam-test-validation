@@ -73,4 +73,44 @@ public class LoanCalculatorTests
         // Assert
         Assert.Equal(correctResult, result);
     }
+
+    [Theory]
+    [InlineData(897.91, 120, 107749.2)]
+    public void ShouldComputeTotalLoan(double monthlyPayment, int monthDuration, double correctResult)
+    {
+        // Act
+        double result = LoanCalculator.ComputeLoanTotalPayment(monthlyPayment, monthDuration);
+
+        // Assert
+        Assert.Equal(correctResult, result);
+    }
+
+    [Theory]
+    [InlineData(897.91, 0)]
+    [InlineData(897.91, -1)]
+    [InlineData(897.91, int.MinValue)]
+    public void ComputeLoanTotal_ShouldNotAcceptUnderMinimalMonthlyDuration(double monthlyPayment, int monthDuration)
+    {
+        // Act
+        Action act = () => LoanCalculator.ComputeLoanTotalPayment(monthlyPayment, monthDuration);
+
+        // Assert
+        ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>(act);
+        Assert.Equal("Monthly duration should be above 0 (Parameter 'monthDuration')", exception.Message);
+    }
+
+    [Theory]
+    [InlineData(0, 1)]
+    [InlineData(-1, 120)]
+    [InlineData(int.MinValue, 300)]
+    public void ComputeLoanTotal_ShouldNotAcceptUnderMinimalMonthlyPayment(double monthlyPayment, int monthDuration)
+    {
+        // Act
+        Action act = () => LoanCalculator.ComputeLoanTotalPayment(monthlyPayment, monthDuration);
+
+        // Assert
+        ArgumentOutOfRangeException exception = Assert.Throws<ArgumentOutOfRangeException>(act);
+        Assert.Equal("Monthly payment should be above 0 (Parameter 'monthlyPayment')", exception.Message);
+    }
+
 }

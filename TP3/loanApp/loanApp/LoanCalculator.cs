@@ -31,5 +31,20 @@ namespace LoanApp
 
             return result;
         }
+
+        public static double ComputeLoanTotalPayment(double monthlyPayment, int monthDuration)
+        {
+            if(monthDuration < 1)
+            {
+                   throw new ArgumentOutOfRangeException("monthDuration", "Monthly duration should be above 0");
+            }
+
+            if(monthlyPayment < 1)
+            {
+                   throw new ArgumentOutOfRangeException("monthlyPayment", "Monthly payment should be above 0");
+            }
+
+            return Math.Round(monthlyPayment * monthDuration, 2);
+        }
     }
 }

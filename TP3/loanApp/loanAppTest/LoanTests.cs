@@ -97,7 +97,7 @@ namespace LoanAppTest
             Loan loan = new Loan(50001, 0.015, 120);
 
             // Act
-            loan.ComputeMonthResult();
+            loan.ComputeResult();
 
             // Assert
             Assert.NotEmpty(loan.MonthResults);
@@ -105,13 +105,13 @@ namespace LoanAppTest
         }
 
         [Theory, MemberData(nameof(LoanMonthlyResult))]
-        public void ShouldComputeMonthResultWithGoodResult(double capital, double annualRate, int monthDuration, List<LoanMonthResult> expectedResult)
+        public void ShouldComputeMonthResultWithGoodResult(double capital, double annualRate, int monthDuration, double expectedTotal, List<LoanMonthResult> expectedResult)
         {
             // Arrange
             Loan loan = new Loan(capital, annualRate, monthDuration);
 
             // Act
-            loan.ComputeMonthResult();
+            loan.ComputeResult();
 
 
             // Assert
@@ -122,12 +122,14 @@ namespace LoanAppTest
                 Assert.Equal(expected.RefundedCapital, result.RefundedCapital, 2);
                 Assert.Equal(expected.RemainingCapital, result.RemainingCapital, 2);
             });
+
+            Assert.Equal(expectedTotal, loan.TotalPayment, 2);
         }
 
         public static IEnumerable<object[]> LoanMonthlyResult =>
         new List<object[]>
         {
-            new object[] { "100000", "0,015", "120", new List<LoanMonthResult>()
+            new object[] { "100000", "0,015", "120", "107749,2" , new List<LoanMonthResult>()
                 {
                     new LoanMonthResult { MensualityNumber = 1, RefundedCapital = 897.91, RemainingCapital = 99102.09 },
                     new LoanMonthResult { MensualityNumber = 2, RefundedCapital = 1795.82, RemainingCapital = 98204.18 },

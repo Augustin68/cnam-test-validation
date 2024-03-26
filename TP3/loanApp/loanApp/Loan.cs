@@ -12,6 +12,7 @@ namespace LoanApp
         public double AnnualRate { get; set; }
         public int MonthDuration { get; set; }
         public List<LoanMonthResult> MonthResults { get; set; }
+        public double TotalPayment { get; set; }
 
         const int MIN_CAPITAL = 50000;
         const int MIN_MONTH_DURATION = 108;
@@ -36,9 +37,10 @@ namespace LoanApp
             MonthResults = new List<LoanMonthResult>();
         }
 
-        public void ComputeMonthResult()
+        public void ComputeResult()
         {
             double monthlyPayment = LoanCalculator.ComputeLoanMonthlyPayment(Capital, AnnualRate, MonthDuration);
+            TotalPayment = LoanCalculator.ComputeLoanTotalPayment(monthlyPayment, MonthDuration);
 
             double remainingCapital = Capital;
             double refundedCapital = 0;
