@@ -38,7 +38,7 @@ public class ProgramTests
     public static IEnumerable<object[]> LoanArgsData =>
         new List<object[]>
         {
-            new object[] { "50000", "0,015", "120", new LoanArgs(50000, 0.015, 120) },
+            new object[] { "50000", "1,5", "120", new LoanArgs(50000, 0.015, 120) },
             new object[] { "50000", "0", "120", new LoanArgs(50000, 0, 120) },
         };
 }

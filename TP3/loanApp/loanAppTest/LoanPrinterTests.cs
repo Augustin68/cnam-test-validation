@@ -27,7 +27,7 @@ namespace LoanAppTest
         }
 
         [Fact]
-        public void PrintLoan_ShouldWriteTotalOnFirstLine()
+        public void PrintLoan_ShouldWriteCorrectDataOnLines()
         {
             // Arrange
             TestFileSystem fileSystem = new TestFileSystem();
@@ -44,8 +44,8 @@ namespace LoanAppTest
             string[] lines = content.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
 
             Assert.Equal("107749,2", lines[0]);
-            Assert.Equal("1;897,91;99102,09", lines[1]);
-            Assert.Equal("24;21549,84;78450,16", lines[24]);
+            Assert.Equal("1;897,91;106851,29", lines[1]);
+            Assert.Equal("24;21549,84;86199,36", lines[24]);
 
         }
     }

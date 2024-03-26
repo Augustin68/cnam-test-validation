@@ -12,6 +12,10 @@ namespace LoanApp // Note: actual namespace depends on the project name.
 
                 Loan loan = new Loan(loanArgs.Capital, loanArgs.AnnualRate, loanArgs.MonthDuration);
                 loan.ComputeResult();
+
+                RealFileSystem fileSystem = new RealFileSystem();
+                LoanPrinter loanPrinter = new LoanPrinter(fileSystem);
+                loanPrinter.PrintLoan(loan.TotalPayment, loan.MonthResults, "loan.csv");
             }
             catch (Exception e)
             {
@@ -27,7 +31,7 @@ namespace LoanApp // Note: actual namespace depends on the project name.
             }
 
             double capital = double.Parse(args[0]);
-            double annualRate = double.Parse(args[1]);
+            double annualRate = double.Parse(args[1]) / 100;
             int monthDuration = int.Parse(args[2]);
 
             return new LoanArgs

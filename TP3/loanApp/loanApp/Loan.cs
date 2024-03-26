@@ -42,7 +42,7 @@ namespace LoanApp
             double monthlyPayment = LoanCalculator.ComputeLoanMonthlyPayment(Capital, AnnualRate, MonthDuration);
             TotalPayment = LoanCalculator.ComputeLoanTotalPayment(monthlyPayment, MonthDuration);
 
-            double remainingCapital = Capital;
+            double remainingCapital = TotalPayment;
             double refundedCapital = 0;
             for (int i = 1; i <= MonthDuration; i++)
             {
