@@ -9,9 +9,8 @@ namespace LoanApp // Note: actual namespace depends on the project name.
             try
             {
                 LoanArgs loanArgs = GetArgs(args);
-                Loan loanCalculator = new Loan();
 
-                double monthlyPayment = loanCalculator.ComputeLoanMonthlyPayment(loanArgs.Capital, loanArgs.AnnualRate, loanArgs.MonthDuration);
+                double monthlyPayment = LoanCalculator.ComputeLoanMonthlyPayment(loanArgs.Capital, loanArgs.AnnualRate, loanArgs.MonthDuration);
                 Console.WriteLine($"Monthly payment: {monthlyPayment}");
             }
             catch (Exception e)

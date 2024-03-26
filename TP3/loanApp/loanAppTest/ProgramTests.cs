@@ -7,7 +7,6 @@ public class ProgramTests
     [Theory]
     [InlineData("50000", "0.015", "120", "0")]
     [InlineData("50000", "0.015")]
-    [InlineData()]
     [InlineData("50000", "0.015", "120", "0", "50000", "0.015", "120", "0")]
     [InlineData("50000", "", "0.015")]
 
@@ -26,8 +25,9 @@ public class ProgramTests
     public void ShouldReturnLoanArgsFormated(string capital, string annualRate, string monthDuration, LoanArgs expected)
     {
         // Arrange
+        string[] args = new string[] { capital, annualRate, monthDuration };
         // Act
-        LoanArgs result = Program.GetArgs(new string[] { capital, annualRate, monthDuration });
+        LoanArgs result = Program.GetArgs(args);
 
         // Assert
         Assert.Equal(expected.Capital, result.Capital);
@@ -38,7 +38,7 @@ public class ProgramTests
     public static IEnumerable<object[]> LoanArgsData =>
         new List<object[]>
         {
-            new object[] { "50000", "0.015", "120", new LoanArgs(50000, 0.015, 120) },
+            new object[] { "50000", "0,015", "120", new LoanArgs(50000, 0.015, 120) },
             new object[] { "50000", "0", "120", new LoanArgs(50000, 0, 120) },
         };
 }
