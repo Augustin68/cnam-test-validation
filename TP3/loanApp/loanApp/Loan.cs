@@ -39,21 +39,22 @@ namespace LoanApp
 
         public void ComputeResult()
         {
-            double monthlyPayment = LoanCalculator.ComputeLoanMonthlyPayment(Capital, AnnualRate, MonthDuration);
-            TotalPayment = LoanCalculator.ComputeLoanTotalPayment(monthlyPayment, MonthDuration);
+            double monthlyPayment = LoanCalculator.ComputeLoanMonthlyPayment(this.Capital, this.AnnualRate, this.MonthDuration);
+            TotalPayment = LoanCalculator.ComputeLoanTotalPayment(monthlyPayment, this.MonthDuration);
 
-            double remainingCapital = TotalPayment;
-            double refundedCapital = 0;
-            for (int i = 1; i <= MonthDuration; i++)
+            double remainingCapital = this.Capital;
+            double monthlyRate = this.AnnualRate / 12;
+            for (int i = 1; i <= this.MonthDuration; i++)
             {
-                remainingCapital -= monthlyPayment;
-                refundedCapital += monthlyPayment;
+                double monthInterest = remainingCapital * monthlyRate;
+                double monthRefundedCapital = monthlyPayment - monthInterest;
+                remainingCapital -= monthRefundedCapital;
 
                 MonthResults.Add(new LoanMonthResult
                 {
                     MensualityNumber = i,
-                    RefundedCapital = Math.Round(refundedCapital, 2),
-                    RemainingCapital = Math.Round(remainingCapital, 2),
+                    RefundedCapital = monthRefundedCapital,
+                    RemainingCapital = remainingCapital,
                 });
             }
         }

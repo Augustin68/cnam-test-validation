@@ -17,10 +17,10 @@ namespace LoanApp
         public void PrintLoan(double totalPayment, List<LoanMonthResult> monthResults, string path)
         {
             StringBuilder csv = new StringBuilder();
-            csv.AppendLine(totalPayment.ToString());
+            csv.AppendLine(Math.Round(totalPayment, 2).ToString());
             foreach (var monthResult in monthResults)
             {
-                csv.AppendLine($"{monthResult.MensualityNumber};{monthResult.RefundedCapital};{monthResult.RemainingCapital}");
+                csv.AppendLine($"{Math.Round(monthResult.MensualityNumber, 2)};{Math.Round(monthResult.RefundedCapital, 2)};{Math.Round(monthResult.RemainingCapital, 2)}");
             }
 
             FileSystem.WriteAllText(path, csv.ToString());

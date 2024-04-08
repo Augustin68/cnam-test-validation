@@ -27,7 +27,7 @@ namespace LoanApp
             double annualRateOnMonth = annualRate / 12;
             double topEquation = capital * annualRateOnMonth;
             double bottomEquation = 1 - Math.Pow((1 + annualRateOnMonth), -monthDuration);
-            double result = Math.Round(topEquation / bottomEquation, 2);
+            double result = topEquation / bottomEquation;
 
             return result;
         }
@@ -44,7 +44,7 @@ namespace LoanApp
                    throw new ArgumentOutOfRangeException("monthlyPayment", "Monthly payment should be above 0");
             }
 
-            return Math.Round(monthlyPayment * monthDuration, 2);
+            return monthlyPayment * monthDuration;
         }
     }
 }

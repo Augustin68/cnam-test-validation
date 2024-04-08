@@ -129,11 +129,11 @@ namespace LoanAppTest
         public static IEnumerable<object[]> LoanMonthlyResult =>
         new List<object[]>
         {
-            new object[] { "100000", "0,015", "120", "107749,2" , new List<LoanMonthResult>()
+            new object[] { "100000", "0,015", "120", "107749,8" , new List<LoanMonthResult>()
                 {
-                    new LoanMonthResult { MensualityNumber = 1, RefundedCapital = 897.91, RemainingCapital = 106851.29 },
-                    new LoanMonthResult { MensualityNumber = 2, RefundedCapital = 1795.82, RemainingCapital = 105953.38 },
-                    new LoanMonthResult { MensualityNumber = 24, RefundedCapital = 21549.84, RemainingCapital = 86199.36 }
+                    new LoanMonthResult { MensualityNumber = 1, RefundedCapital = 772.91, RemainingCapital = 99227.09 },
+                    new LoanMonthResult { MensualityNumber = 2, RefundedCapital = 773.88, RemainingCapital = 98453.2 },
+                    new LoanMonthResult { MensualityNumber = 24, RefundedCapital = 795.44, RemainingCapital = 81180.92 }
                 }
             },
         };
@@ -148,7 +148,7 @@ namespace LoanAppTest
             loan.ComputeResult();
 
             // Assert
-            Assert.Equal(107749.2, loan.MonthResults[loan.MonthResults.Count - 1].RefundedCapital);
+            Assert.Equal(896.79, Math.Round(loan.MonthResults[loan.MonthResults.Count - 1].RefundedCapital, 2));
         }
 
         [Fact]
@@ -161,7 +161,7 @@ namespace LoanAppTest
             loan.ComputeResult();
 
             // Assert
-            Assert.Equal(0, loan.MonthResults[loan.MonthResults.Count - 1].RemainingCapital);
+            Assert.Equal(0, Math.Round(loan.MonthResults[loan.MonthResults.Count - 1].RemainingCapital, 2));
         }
     }
 }

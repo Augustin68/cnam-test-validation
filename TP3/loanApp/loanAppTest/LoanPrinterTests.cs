@@ -37,15 +37,15 @@ namespace LoanAppTest
 
             string fileName = "test.csv";
             // Act
-            loanPrinter.PrintLoan(loan.TotalPayment, loan.MonthResults, fileName);
+            loanPrinter.PrintLoan(Math.Round(loan.TotalPayment, 2), loan.MonthResults, fileName);
 
             // Assert
             string content = fileSystem.fileSystem[fileName];
             string[] lines = content.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
 
-            Assert.Equal("107749,2", lines[0]);
-            Assert.Equal("1;897,91;106851,29", lines[1]);
-            Assert.Equal("24;21549,84;86199,36", lines[24]);
+            Assert.Equal("107749,8", lines[0]);
+            Assert.Equal("1;772,9149979503163;99227,08500204969", lines[1]);
+            Assert.Equal("24;795,444537391465;81180,9239096896", lines[24]);
 
         }
     }

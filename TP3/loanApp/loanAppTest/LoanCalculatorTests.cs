@@ -71,7 +71,7 @@ public class LoanCalculatorTests
         double result = LoanCalculator.ComputeLoanMonthlyPayment(capital, annualRate, monthDuration);
 
         // Assert
-        Assert.Equal(correctResult, result);
+        Assert.Equal(correctResult, Math.Round(result, 2));
     }
 
     [Theory]
